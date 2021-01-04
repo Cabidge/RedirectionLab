@@ -5,7 +5,7 @@ public class MakeStars {
         while (n.hasNextLine()) {
             Scanner l = new Scanner(n.nextLine());
             while (l.hasNext()) {
-                System.out.print(l.next());
+                System.out.print(MakeStars.asStars(l.next()));
 
                 if (l.hasNext()) {
                     System.out.print(" ");
@@ -16,5 +16,9 @@ public class MakeStars {
                 System.out.println("");
             }
         }
+    }
+
+    public static String asStars(String word) {
+        return "*".repeat(word.length());
     }
 }
