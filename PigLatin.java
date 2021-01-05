@@ -5,7 +5,7 @@ public class PigLatin {
         // simple
         System.out.print(PigLatin.pigLatinSimple("mock"));
         System.out.println(" = ockmay?");
-        
+
         System.out.print(PigLatin.pigLatinSimple("pie"));
         System.out.println(" = iepay?");
 
@@ -14,7 +14,7 @@ public class PigLatin {
 
         System.out.print(PigLatin.pigLatinSimple("aaron"));
         System.out.println(" = aaronhay?");
-        
+
         // digraphs
         System.out.print(PigLatin.pigLatin("the"));
         System.out.println(" = ethay?");
@@ -51,7 +51,7 @@ public class PigLatin {
         System.out.println(" = atcay!?");
 
         System.out.print(PigLatin.pigLatinBest("amazing?"));
-        System.out.println(" = amazinghay??"	);
+        System.out.println(" = amazinghay??");
 
         System.out.print(PigLatin.pigLatinBest("apple%"));
         System.out.println(" = applehay%?");
@@ -67,23 +67,25 @@ public class PigLatin {
             return s.substring(1) + firstChar + "ay";
         }
     }
-    
+
     public static boolean lowerIsVowel(char c) {
         return "aeiou".indexOf(c) != -1;
     }
-    
+
     public static String pigLatin(String s) {
         String digraph = s.substring(0, 2).toLowerCase();
         if (PigLatin.lowerIsDigraph(digraph)) {
-            return s.substring(2).toLowerCase() + digraph + "ay"; // added toLowerCase here and two lines up for insurance
+            return s.substring(2).toLowerCase() + digraph + "ay"; // added toLowerCase here and two lines up for
+                                                                  // insurance
         }
         // if first two characters do not make a digraph,
         // just use the simple piglatin method
         return PigLatin.pigLatinSimple(s);
     }
-    
+
     public static boolean lowerIsDigraph(String s) {
-        String[] digraphs = {"bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl", "pr", "qu", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
+        String[] digraphs = { "bl", "br", "ch", "ck", "cl", "cr", "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", "pl",
+                "pr", "qu", "sc", "sh", "sk", "sl", "sm", "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr" };
         for (String digraph : digraphs) {
             if (s.equals(digraph)) {
                 return true;
@@ -91,11 +93,17 @@ public class PigLatin {
         }
         return false;
     }
-    
+
     public static String pigLatinBest(String s) {
         if (!Character.isLetter(s.charAt(0))) {
-            return s;
+            return s.toLowerCase();
         }
-        return "";
+        
+        char lastChar = s.charAt(s.length() - 1);
+        if (Character.isLetterOrDigit(lastChar)) { // no punctuation
+            return PigLatin.pigLatin(s);
+        }
+
+        return PigLatin.pigLatin(s.substring(0, s.length() - 1)) + lastChar;
     }
 }
