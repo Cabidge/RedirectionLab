@@ -30,6 +30,31 @@ public class PigLatin {
 
         System.out.print(PigLatin.pigLatin("grade"));
         System.out.println(" = adegray?");
+
+        // best
+        System.out.print(PigLatin.pigLatinBest("*emu"));
+        System.out.println(" = *emu?");
+
+        System.out.print(PigLatin.pigLatinBest("4chan"));
+        System.out.println(" = 4chan?");
+
+        System.out.print(PigLatin.pigLatinBest("fish!"));
+        System.out.println(" = ishfay!?");
+
+        System.out.print(PigLatin.pigLatinBest("fish"));
+        System.out.println(" = ishfay?");
+
+        System.out.print(PigLatin.pigLatinBest("the."));
+        System.out.println(" = ethay.?");
+
+        System.out.print(PigLatin.pigLatinBest("cat!"));
+        System.out.println(" = atcay!?");
+
+        System.out.print(PigLatin.pigLatinBest("amazing?"));
+        System.out.println(" = amazinghay??"	);
+
+        System.out.print(PigLatin.pigLatinBest("apple%"));
+        System.out.println(" = applehay%?");
     }
 
     public static String pigLatinSimple(String s) {
@@ -65,5 +90,12 @@ public class PigLatin {
             }
         }
         return false;
+    }
+    
+    public static String pigLatinBest(String s) {
+        if (!Character.isLetter(s.charAt(0))) {
+            return s;
+        }
+        return "";
     }
 }
