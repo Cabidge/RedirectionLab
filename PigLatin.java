@@ -2,59 +2,75 @@ import java.util.*;
 
 public class PigLatin {
     public static void main(String[] aaa) {
-        // simple
-        System.out.print(PigLatin.pigLatinSimple("mock"));
-        System.out.println(" = ockmay?");
+        Scanner n = new Scanner(System.in);
+        while (n.hasNextLine()) {
+            Scanner l = new Scanner(n.nextLine());
+            while (l.hasNext()) {
+                System.out.print(PigLatin.pigLatinBest(l.next()));
 
-        System.out.print(PigLatin.pigLatinSimple("pie"));
-        System.out.println(" = iepay?");
+                if (l.hasNext()) {
+                    System.out.print(" ");
+                }
+            }
 
-        System.out.print(PigLatin.pigLatinSimple("david"));
-        System.out.println(" = avidday?");
+            if (n.hasNextLine()) {
+                System.out.println("");
+            }
+        }
 
-        System.out.print(PigLatin.pigLatinSimple("aaron"));
-        System.out.println(" = aaronhay?");
+        // // simple
+        // System.out.print(PigLatin.pigLatinSimple("mock"));
+        // System.out.println(" = ockmay?");
 
-        // digraphs
-        System.out.print(PigLatin.pigLatin("the"));
-        System.out.println(" = ethay?");
+        // System.out.print(PigLatin.pigLatinSimple("pie"));
+        // System.out.println(" = iepay?");
 
-        System.out.print(PigLatin.pigLatin("check"));
-        System.out.println(" = eckchay?");
+        // System.out.print(PigLatin.pigLatinSimple("david"));
+        // System.out.println(" = avidday?");
 
-        System.out.print(PigLatin.pigLatin("skee"));
-        System.out.println(" = eeskay?");
+        // System.out.print(PigLatin.pigLatinSimple("aaron"));
+        // System.out.println(" = aaronhay?");
 
-        System.out.print(PigLatin.pigLatin("emu"));
-        System.out.println(" = emuhay?");
+        // // digraphs
+        // System.out.print(PigLatin.pigLatin("the"));
+        // System.out.println(" = ethay?");
 
-        System.out.print(PigLatin.pigLatin("grade"));
-        System.out.println(" = adegray?");
+        // System.out.print(PigLatin.pigLatin("check"));
+        // System.out.println(" = eckchay?");
 
-        // best
-        System.out.print(PigLatin.pigLatinBest("*emu"));
-        System.out.println(" = *emu?");
+        // System.out.print(PigLatin.pigLatin("skee"));
+        // System.out.println(" = eeskay?");
 
-        System.out.print(PigLatin.pigLatinBest("4chan"));
-        System.out.println(" = 4chan?");
+        // System.out.print(PigLatin.pigLatin("emu"));
+        // System.out.println(" = emuhay?");
 
-        System.out.print(PigLatin.pigLatinBest("fish!"));
-        System.out.println(" = ishfay!?");
+        // System.out.print(PigLatin.pigLatin("grade"));
+        // System.out.println(" = adegray?");
 
-        System.out.print(PigLatin.pigLatinBest("fish"));
-        System.out.println(" = ishfay?");
+        // // best
+        // System.out.print(PigLatin.pigLatinBest("*emu"));
+        // System.out.println(" = *emu?");
 
-        System.out.print(PigLatin.pigLatinBest("the."));
-        System.out.println(" = ethay.?");
+        // System.out.print(PigLatin.pigLatinBest("4chan"));
+        // System.out.println(" = 4chan?");
 
-        System.out.print(PigLatin.pigLatinBest("cat!"));
-        System.out.println(" = atcay!?");
+        // System.out.print(PigLatin.pigLatinBest("fish!"));
+        // System.out.println(" = ishfay!?");
 
-        System.out.print(PigLatin.pigLatinBest("amazing?"));
-        System.out.println(" = amazinghay??");
+        // System.out.print(PigLatin.pigLatinBest("fish"));
+        // System.out.println(" = ishfay?");
 
-        System.out.print(PigLatin.pigLatinBest("apple%"));
-        System.out.println(" = applehay%?");
+        // System.out.print(PigLatin.pigLatinBest("the."));
+        // System.out.println(" = ethay.?");
+
+        // System.out.print(PigLatin.pigLatinBest("cat!"));
+        // System.out.println(" = atcay!?");
+
+        // System.out.print(PigLatin.pigLatinBest("amazing?"));
+        // System.out.println(" = amazinghay??");
+
+        // System.out.print(PigLatin.pigLatinBest("apple%"));
+        // System.out.println(" = applehay%?");
     }
 
     public static String pigLatinSimple(String s) {
@@ -73,10 +89,12 @@ public class PigLatin {
     }
 
     public static String pigLatin(String s) {
-        String digraph = s.substring(0, 2).toLowerCase();
-        if (PigLatin.lowerIsDigraph(digraph)) {
-            return s.substring(2).toLowerCase() + digraph + "ay"; // added toLowerCase here and two lines up for
-                                                                  // insurance
+        if (s.length() >= 2) {
+            String digraph = s.substring(0, 2).toLowerCase();
+            if (PigLatin.lowerIsDigraph(digraph)) {
+                return s.substring(2).toLowerCase() + digraph + "ay"; // added toLowerCase here and two lines up for
+                                                                      // insurance
+            }
         }
         // if first two characters do not make a digraph,
         // just use the simple piglatin method
@@ -98,7 +116,7 @@ public class PigLatin {
         if (!Character.isLetter(s.charAt(0))) {
             return s.toLowerCase();
         }
-        
+
         char lastChar = s.charAt(s.length() - 1);
         if (Character.isLetterOrDigit(lastChar)) { // no punctuation
             return PigLatin.pigLatin(s);
