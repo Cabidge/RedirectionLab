@@ -48,9 +48,9 @@ public class PigLatin {
     }
     
     public static String pigLatin(String s) {
-        String digraph = s.substring(0, 2);
+        String digraph = s.substring(0, 2).toLowerCase();
         if (PigLatin.lowerIsDigraph(digraph)) {
-            return s.substring(2) + digraph + "ay";
+            return s.substring(2).toLowerCase() + digraph + "ay"; // added toLowerCase here and two lines up for insurance
         }
         // if first two characters do not make a digraph,
         // just use the simple piglatin method
